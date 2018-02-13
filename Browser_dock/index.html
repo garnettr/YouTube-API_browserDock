@@ -5,12 +5,21 @@
     <link rel='stylesheet' href='styles/main.css'>
 </head>
 <body>
+<div class="my_profile_img">
+	<button id="execute-request-button">Authorize</button>
+</div>
 
-<button id="execute-request-button">Authorize</button>
+<button id="authorize-button" style="display: none;">Authorize</button>
+<button id="signout-button" style="display: none;">Sign Out</button>
 
-<div class="youtube_profiles">
-  
+<div class="youtube_profiles"></div>
 
+<div class="js-subscriptions"></div>
+
+<div class="js-videos-container"></div>
+
+<div class="input-group-append">
+  <button class="btn btn-primary js-grab-info" type="button">Grab Info</button>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -20,3 +29,6 @@
 </script>
 <script src='javascript/main.js'></script>
 </body></html>
+
+
+

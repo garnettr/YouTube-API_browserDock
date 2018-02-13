@@ -18,7 +18,7 @@
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes
 
-    gapi.client.init({
+    gapi.client.init({ 
         'clientId': '203134710765-ughqm7a64b2sm54mdm6ppj2qjm19eqt6.apps.googleusercontent.com',
         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
         'scope': 'https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner'
@@ -48,7 +48,7 @@
     isAuthorized = user.hasGrantedScopes('https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtubepartner');
     // Toggle button text and displayed statement based on current auth status.
     if (isAuthorized) {
-      defineRequest();
+     getChanelInfo();
     }
   }
 
@@ -96,17 +96,31 @@
     return params;
   }
 
-  function executeRequest(request) {
+//===============================================================
+
+  // Renders the parameters passed in from "buildChnlSections"
+  const executeChnlSections = request => {
     request.execute(function(response) {
-      console.log(response);
+      let profile = response;
+      console.log(profile);
+
+      let profileImage = document.querySelector('.js-subscriptions');
+
+      let str = '';
+
+      for (let i = 0; i < profile.items.length; i ++) {
+        str += `<iframe width="420" height="315" src="https://www.youtube.com/embed/videoseries?list=${profile.items[i].contentDetails.playlists}"></iframe>`;  
+        profileImage.innerHTML = str;  
+      }
     });
   }
 
-  function buildApiRequest(requestMethod, path, params, properties) {
+  // Passing in the parameters to "executeChnlSections" to render Channel Sections
+  const buildChnlSections =(requestMethod, path,params, properties) => {
     params = removeEmptyParams(params);
-    var request;
+    let request;
     if (properties) {
-      var resource = createResource(properties);
+      let resource = createResource(properties);
       request = gapi.client.request({
           'body': resource,
           'method': requestMethod,
@@ -120,20 +134,175 @@
           'params': params
       });
     }
-    executeRequest(request);
+    executeChnlSections(request);
   }
 
-  /***** END BOILERPLATE CODE *****/
+  let items = [];
 
-  
-  function defineRequest() {
-    // See full sample for buildApiRequest() code, which is not 
-// specific to a particular API or API method.
+  // Renders the parameters passed in from "buildSubscriptions"
+  const executeSubscriptions = requestSub => {
+    requestSub.execute(function(requestSub) {
+      let data = requestSub;
+      console.log(data);
+      let subscriptImages = document.querySelector('.youtube_profiles');
+      let content = '';
+      let str = '';
 
-buildApiRequest('GET',
-                '/youtube/v3/subscriptions',
-                {'mine': 'true',
-                'order': 'alphabetical',
-                 'part': 'snippet,contentDetails'});
-
+        // Loop through and save "profileImage" and "channelId"
+      for (let i = 0; i < data.items.length; i ++) {
+        content = {
+          'profileImage': data.items[i].snippet.thumbnails.high.url,
+          'channelId': data.items[i].snippet.resourceId.channelId
+        }
+        // push "profileImage" and "channelId" to "items" and render suscription images to page
+        items.push(content);
+        let source = items[i].profileImage;
+        let channelId = items[i].channelId;
+        str += `<img src="${source}" alt="" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`;  
+      }
+      subscriptImages.innerHTML = str + `<button js="js-next-page" id="${data.nextPageToken}" onclick="requestSubscriptions(this.id)">NexPage</button>` + `<button js="js-prev-page">PrevPage</button>`; 
+      console.log(content);
+      console.log(items);
+    });
   }
+
+  // Passing in the parameters to "execute" to render Subscriptions
+  const buildSubscriptions=(requestMethod, path,params, properties) => {
+    params = removeEmptyParams(params);
+    let requestSub;
+    if (properties) {
+      let resource = createResource(properties);
+      requestSub = gapi.client.request({
+          'body': resource,
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    } else {
+      requestSub = gapi.client.request({
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    }
+    executeSubscriptions(requestSub);
+  }
+
+  // Renders the parameters passed in from "buildProfile"
+  const executeProfile = requestSub => {
+    requestSub.execute(function(requestSub) {
+      let data = requestSub;
+      let yourProfile = document.querySelector('.my_profile_img');
+
+      let str = '';
+
+      for (let i = 0; i < data.items.length; i ++) {
+        str += `<img src="${data.items[i].snippet.thumbnails.high.url}" alt="" height="20%" width="40%">`;  
+        yourProfile.innerHTML = str; 
+      }
+      console.log(str);
+    });
+  }
+
+  // Passing in the parameters to "executeProfile" to render Profile Image
+  const buildProfile =(requestMethod, path,params, properties) => {
+    params = removeEmptyParams(params);
+    let requestSub;
+    if (properties) {
+      let resource = createResource(properties);
+      requestSub = gapi.client.request({
+          'body': resource,
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    } else {
+      requestSub = gapi.client.request({
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    }
+    executeProfile(requestSub);
+  }
+
+/***** END BOILERPLATE CODE *****/
+
+
+
+// ============== "States" Defining Requests ===============//
+
+// Gets your channel info > upon "signing in"
+const getChanelInfo = () => {
+  buildProfile('GET',
+              '/youtube/v3/channels', 
+              {'mine': 'true',
+              'order': 'alphabetical',
+               'part': 'snippet,contentDetails,statistics'});
+}
+
+// Gets a list of Your subscriptions 
+const requestSubscriptions = (NextPage) => {
+    buildSubscriptions('GET',
+                    '/youtube/v3/subscriptions',
+                    {'mine': 'true',
+                      'maxResults': '2',
+                      'pageToken': NextPage,
+                      'part': 'snippet,contentDetails'});
+}
+
+// Gets a list of playlists 
+let requestChnlSections = () => {
+  buildChnlSections('GET',
+                  '/youtube/v3/channelSections',
+                  {'channelId': 'UCpFHkjOa7ia6bH5_6cDsDXg',
+                    'key': 'AIzaSyAv9vVPmmlVolP1M6mcfJc_fcWdlYHywac',
+                    'brandingSettings.channel.showBrowseView': true,
+                   'part': 'contentDetails',
+                   'snippet.type': 'recentUploads'});
+}
+
+// On click oc subsciption images
+let activateImages = (clicked_id) => {
+    buildChnlSections('GET',
+                  '/youtube/v3/channelSections',
+                  {'channelId': clicked_id,
+                    'key': 'AIzaSyAv9vVPmmlVolP1M6mcfJc_fcWdlYHywac',
+                    'brandingSettings.channel.showBrowseView': true,
+                   'part': 'contentDetails',
+                   'snippet.type': 'recentUploads'});
+}
+
+// On click grab next page token
+let nextPage = (NextPage) => {
+    buildSubscriptions('GET',
+                    '/youtube/v3/subscriptions',
+                    {'mine': 'true',
+                      'maxResults': '2',
+                      'pageToken': NextPage,
+                      'part': 'snippet,contentDetails'});
+}
+
+
+// ============== EVENT LISTENERS ===============//
+
+const GrabInfoClicked = (evt) => {
+  // requestChnlSections();
+  requestSubscriptions();
+
+} // button click handler
+
+
+
+// ============== Defining selectors ===============//
+
+const grabInfo = document.querySelector('.js-grab-info');
+let youtube_profiles = document.querySelector('.youtube_profiles');
+const profileInner = youtube_profiles.innerHTML;
+const subscrptIcon = document.querySelector('.js-subscriptions');
+
+
+// ============== Event Handlers ===============//
+
+grabInfo.addEventListener('click', GrabInfoClicked);
+// profileInner.addEventListener('click', activateImages);

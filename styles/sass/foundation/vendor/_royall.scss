@@ -1,0 +1,553 @@
+// ================
+// Royall Mixins
+// ================
+
+
+// ================
+// Shorthand @font-face Declaration
+
+@mixin fontFace($_p-fileName, $_f-fontFamily: $_fileName, $_f-fontWeight: normal, $_f-fontStyle: normal) {
+
+////// Description:
+  // - shorthand mixin for @font-face declarations
+  //
+  ////
+
+////// @param $_fileName
+  // - the base filename without the extention
+  ////
+
+////// @param $_fontFamily
+  // - the given name of the font / derives from the file-name if not provided
+  ////
+
+////// @param $_fontWeight
+  // - the given weight of the font / defaults to normal if not provided
+  ////
+
+////// @param $_fontStyle
+  // - the given weight of the font / defaults to normal if not provided
+  ////
+
+  @font-face {
+    font-family: '#{$_f-fontFamily}';
+    src: font-url('#{$_p-fileName}.woff') format('woff');
+    font-weight: $_f-fontWeight;
+    font-style: $_f-fontStyle;
+  }
+
+}
+
+
+// ================
+// Hi-Res Display Query
+
+@mixin mres($_mq-density: "1.1") {
+
+////// Description:
+  // - mixin to output media query to detect hi-res displays
+  ////
+
+////// @param $_mq-density
+  // - the pixel density you want to check for
+  ////
+
+  @media (-webkit-min-device-pixel-ratio: $_mq-density),
+         (min-resolution: $_mq-density + "dppx") {
+    @content;
+  }
+}
+
+
+// ================
+// Hi-Res Optimized Background Images
+
+@mixin backgroundImage($_p-img: "default", $_p-ext: "png", $_p-hiRes: "-2x", $_mq-hiResMin: "1.1") {
+
+////// Description:
+  // - mixin to output background images optimized for hi-res screens using a double-size image
+  ////
+
+////// @param $_p-img
+  // - the base file name
+  // - should be shared by both default image and double-size image
+  // - should not include file extension
+  ////
+
+////// @param $_p-ext
+  // - the file extension being used
+  ////
+
+////// @param $_p-hiRes
+  // - the suffix added to the base filename for the double-size image
+  ////
+
+////// @param $_mq-hiResMin
+  // - the minimum pixel density at which the double-size image should be applied
+  ////
+
+  background: {
+    image: image-url($_p-img + "." + $_p-ext);
+    size: contain;
+    repeat: no-repeat;
+  };
+
+  @if ($_x-hiResVersion == true) {
+    @include mres($_mq-hiResMin) {
+      background-image: image-url($_p-img + $_p-hiRes + "." + $_p-ext);
+    };
+  }
+}
+
+
+// ================
+// Wide Form Layout
+
+@mixin wideForm($_mq-breakpoint: 56.25em, $_d-formLabelWidth: 33.333%, $_d-formLabelPad: 0.5em, $_x-stackClass: ".question-stacked") {
+
+////// Description:
+  // - mixin to automatically format RMS forms for large screens
+  // - places labels to the left and form fields to the right
+  // - uses inline-block for layout
+  // - can also accept content inside mixin ... these styles will only be applied when the wide form layout is in effect, at the screen size defined in $_mq-breakpoint
+  ////
+
+////// @param $_mq-breakpoint
+  // - the screen size at which the wide form layout should be applied
+  // - default to 56.25em (900px)
+  ////
+
+////// @param $_d-formLabelWidth
+  // - the percentage width of the label (relative to the question container)
+  ////
+
+////// @param $_d-formLabelPad
+  // - the top and bottom padding applied to the label to maintain vertical alignment with the form field
+  ////
+
+////// @param $_x-stackClass
+  // - class that can optionally be applied to questions to override the wide form layout
+  ////
+
+  @media (min-width: #{$_mq-breakpoint}) {
+    .question {
+      &:not(.type_checkbox):not(.type_ethnicity):not(#{$_x-stackClass}) {
+        & > label,
+        & > .rte-q-label {
+          display: inline-block;
+          width: $_d-formLabelWidth;
+          padding: $_d-formLabelPad 5% $_d-formLabelPad 0;
+          vertical-align: top;
+
+          & ~ * {
+            display: inline-block;
+            width: calc(#{100% - $_d-formLabelWidth} - 0.375em);
+            vertical-align: top;
+
+            &.choice {
+              margin: #{$_d-formLabelPad * 0.75} 0;
+            }
+          }
+        }
+      }
+
+      &.related-question {
+        padding-left: calc(#{$_d-formLabelWidth} + 0.375em);
+      }
+    }
+
+    @content;
+  }
+}
+
+
+// ================
+// Wide Form Layout (Flexbox Version)
+
+@mixin wideFormFlex($_mq-breakpoint: 56.25em, $_d-formLabelWidth: 33.333%, $_d-formLabelPad: 0.5em, $_x-stackClass: ".question-stacked") {
+
+////// Description:
+  // - mixin to automatically format RMS forms for large screens
+  // - places labels to the left and form fields to the right
+  // - uses Flexbox for layout
+  // - can also accept content inside mixin ... these styles will only be applied when the wide form layout is in effect, at the screen size defined in $_mq-breakpoint
+  ////
+
+////// @param $_mq-breakpoint
+  // - the screen size at which the wide form layout should be applied
+  // - default to 56.25em (900px)
+  ////
+
+////// @param $_d-formLabelWidth
+  // - the percentage width of the label (relative to the question container)
+  ////
+
+////// @param $_d-formLabelPad
+  // - the top and bottom padding applied to the label to maintain vertical alignment with the form field
+  ////
+
+////// @param $_x-stackClass
+  // - class that can optionally be applied to questions to override the wide form layout
+  ////
+
+  @media (min-width: #{$_mq-breakpoint}) {
+    .question {
+      &:not(.type_checkbox):not(.type_ethnicity):not(#{$_x-stackClass}) {
+        @include flexbox;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+
+        & > label,
+        & > .rte-q-label {
+          padding: $_d-formLabelPad 5% $_d-formLabelPad 0;
+          width:$_d-formLabelWidth;
+
+          & ~ * {
+            width: calc(100% - #{$_d-formLabelWidth});
+
+            &.choice {
+              margin: #{$_d-formLabelPad * 0.75} 0;
+            }
+          }
+
+          & ~ .help {
+            width:100%;
+          }
+        }
+      }
+
+      &.related-question {
+        padding-left: $_d-formLabelWidth;
+      }
+    }
+
+    @content;
+  }
+}
+
+
+// ================
+// Fluid Type Scaling
+
+@mixin fluidTypeSize($_f-maxFont, $_f-minFont: 1, $_mq-maxWidth: 75, $_mq-minWidth: 20) {
+
+////// Description:
+  // - mixin to fluidly scale type from a minimum font size to a maximum font size, within a range of screen sizes, while maintaining ability for user to adjust preferred base font size
+  ////
+
+////// @param $_f-maxFont
+  // - the largest size that the type should be
+  // - should be a UNITLESS value (but will ultimately have rem appended)
+  // - REQUIRED parameter
+  ////
+
+////// @param $_f-minFont
+  // - the smallest size that the type should be
+  // - should be a UNITLESS value (but will ultimately have rem appended)
+  // - defaults to the root font size
+  ////
+
+////// @param $_mq-maxWidth
+  // - the screen size at which the max font size should be reached and the type should stop growing
+  // - should be a UNITLESS value (but will ultimately have em appended)
+  // - defaults to 75em (1200px)
+  ////
+
+////// @param $_mq-minWidth
+  // - the screen size at which the type should begin to scale from small to large
+  // - should be a UNITLESS value (but will ultimately have em appended)
+  // - defaults to 20em (320px)
+  ////
+
+////// Instructions:
+  // - Do not apply to the html or body elements
+  // - Reserve use for larger display type, not body type
+  ////
+
+  font-size: #{$_f-minFont}rem;
+
+  @media (min-width: #{$_mq-minWidth}rem) and (max-width: #{$_mq-maxWidth}rem) {
+    font-size: calc( #{$_f-minFont}rem + (#{$_f-maxFont} - #{$_f-minFont}) * ( (100vw - #{$_mq-minWidth}rem) / ( #{$_mq-maxWidth} - #{$_mq-minWidth}) ));
+  }
+
+  @media (min-width: #{$_mq-maxWidth}rem) {
+    font-size: #{$_f-maxFont}rem;
+  }
+}
+
+
+// ================
+// Counter
+
+@mixin counter($_x-counterName, $_x-item, $_x-number: null) {
+
+////// Description:
+  // - mixin to automatically add a CSS counter to any element
+  ////
+
+////// @param $_x-counterName
+  // - the name of the counter
+  // - should be a STRING
+  // - the name can be whatever you want, as long as it doesn't conflict with other counters
+  // - REQUIRED parameter
+  ////
+
+////// @param $_x-item
+  // - the item that we are counting (this can be a general selector like "li" or "p")
+  // - should be a STRING containing a CSS selector
+  // - REQUIRED parameter
+  ////
+
+////// @param $_x-number
+  // - the item to which the numbering should be applied
+  // - should be a STRING containing a CSS selector
+  // - optional parameter - if not supplied, the numbering will be applied directly to the element being counted
+  ////
+
+////// Instructions:
+  // - Identify the element that should wrap your counter (for example, your navigation or the div that wraps your completion steps). The mixin should be called from within this selector.
+  // - Pick a name for your counter and pass that string to $_x-counterName.
+  // - Determine what you're counting, and pass that selector to $_x-item. (this can be a general selector like "li" or "p")
+  // - Optional: Based on your design, determine where the numbering should be applied and pass that selector to $_x-number. For example, if you're counting completion steps, and you want the numbering applied to the headline within each step, you might pass "h3" to $_x-number.
+  ////
+
+  counter-reset: $_x-counterName;
+  #{$_x-item} {
+    counter-increment: $_x-counterName;
+    @if( $_x-number == null ) {
+      &::before {
+        content: counter(#{$_x-counterName});
+      }
+    } @else {
+      #{$_x-number}::before {
+        content: counter(#{$_x-counterName});
+      }
+    }
+  }
+}
+
+
+// ================
+// Flexbox Sticky Footer
+
+@mixin stickyFooter($_x-content, $_x-wrapper: 'body', $_x-ieFix: 'false') {
+
+////// Description:
+  // - mixin to automatically execute a Flexbox sticky footer
+  ////
+
+////// @param $_x-content
+  // - the element that wraps the main page content and should extend to fill the extra available space on the screen
+  // - should be a STRING containing a CSS selector
+  // - REQUIRED parameter
+  ////
+
+////// @param $_x-wrapper
+  // - the element that wraps the main page content, as well as additional elements like headers and footers
+  // - should be a STRING containing a CSS selector
+  // - defaults to "body", but a different selector can be provided if you have additional wrapper divs within the body
+  ////
+
+////// @param $_x-ieFix
+  // - a BOOLEAN value ("true" or "false")
+  // - addresses an IE bug (it does not support min-height in a vertically oriented Flexbox structure), which causes the sticky footer not to work in IE
+  // - the fix is that min-height is replaced with height ... in most cases this will work fine, but it can cause some undesired side effects with background images
+  ////
+
+////// Instructions:
+  // - This mixin should be declared outside of any selector.
+  // - Look at the content of your page and determine the markup structure. If your header, footer and main content are immediate children of the body, you only need to supply one value: the selector for the main content. If you have additional wrappers, you may need to provide a value for the second parameter as well.
+  // - Test your page in IE and determine whether you need the IE fix. If you do, set the last parameter to "true".
+  ////
+
+  // Safari fix to prevent unclickable elements
+  @if $_x-ieFix == 'true' {
+    @at-root body {
+      position: relative;
+    }
+  }
+
+  #{$_x-wrapper} {
+    @include flexbox();
+    @include flex-direction(column);
+    @if $_x-ieFix == 'true' {
+      height: 100vh;
+    } @else {
+      min-height: 100vh;
+    }
+    & > * {
+      @include flex-shrink(0);
+    }
+  }
+  #{$_x-content} {
+    @include flex-grow(1);
+  }
+}
+
+
+// ================
+// Proportional Element Scaling
+
+@mixin propScale($_d-widthVW, $_d-heightVW, $_mq-max: 75em, $_mq-min: 20em) {
+
+////// Description:
+  // - mixin to scale the width and height of a fixed aspect ratio element (like a logo) proportional to the screen size
+  ////
+
+////// @param $_d-widthVW
+  // - the width of the element, proportional to the viewport width
+  // - should be a VW value (such as 50vw)
+  // - REQUIRED parameter
+  ////
+
+////// @param $_d-heightVW
+  // - the height of the element, proportional to the viewport width
+  // - should be a VW value (such as 15vw)
+  // - REQUIRED parameter
+  ////
+
+////// @param $_mq-max
+  // - the screen size at which the element should be at its maximum size
+  // - should be an EM value
+  // - defaults to 75em (1200px)
+  ////
+
+////// @param $_mq-min
+  // - the screen size at which the element should be at its minimum size
+  // - should be an EM value
+  // - defaults to 20em (320px)
+  ////
+
+////// Instructions:
+  // - Add the mixin to the element that you want to scale.
+  // - Scale your viewport to a medium screen size (around 768px perhaps)
+  // - Either according to a comp, or just eyeballing it, determine the desired width and height of the element, relative to the viewport width. Supply these values for the first two parameters. Do not supply anything for the third and fourth parameters yet.
+  // - Save your Sass and refresh the page.
+  // - Scale your viewport up until the element reaches the maximum desired size. Take note of the screen size, and pass this value to the third parameter as an EM value.
+  // - Scale your viewport down until the element reaches the minimum desired size. Take note of the screen size, and pass this value to the fourth parameter as an EM value.
+  ////
+
+  $_d-width: ( $_d-widthVW / 1vw ) / 100;
+  $_d-height: ( $_d-heightVW / 1vw ) / 100;
+  $_mq-min: $_mq-min / 1em;
+  $_mq-max: $_mq-max / 1em;
+  display: block;
+  width: $_d-widthVW;
+  min-width: #{ $_d-width * $_mq-min }rem;
+  max-width: #{ $_d-width * $_mq-max }rem;
+  height: $_d-heightVW;
+  min-height: #{ $_d-height * $_mq-min }rem;
+  max-height: #{ $_d-height * $_mq-max }rem;
+}
+
+
+// ================
+// Proportional Element Scaling v2
+
+@mixin propScale-v2($_d-viewportWidth-max, $_d-viewportWidth-min, $_d-imgWidth-max, $_d-imgHeight-max, $_d-baseFontSize: 16) {
+
+////// Description:
+  // - mixin to scale the width and height of a fixed aspect ratio element (like a logo) proportional to the screen size
+  ////
+
+////// @param $_d-viewportWidth-max
+  // - the MAXIMUM viewport width you would like your image to STOP scaling
+  // - should be the unitless pixel value
+  // - REQUIRED parameter
+  ////
+
+////// @param $_d-viewportWidth-min
+  // - the MINIMUM viewport width you would like your image to STOP scaling
+  // - should be the unitless pixel value
+  // - REQUIRED parameter
+  ////
+
+////// @param $_d-imgWidth-max
+  // - the max width of your image
+  // - should be the unitless pixel value
+  // - REQUIRED parameter
+  ////
+
+////// @param $_d-imgHeight-max
+  // - the max height of your image
+  // - should be the unitless pixel value
+  // - REQUIRED parameter
+  ////
+
+////// @param $_d-baseFontSize
+  // - the base font size of your site
+  // - should be the unitless pixel value
+  // - defaults to 16
+  ////
+
+  $_d-widthVW: $_d-imgWidth-max/$_d-viewportWidth-max;
+  $_d-heightVW: $_d-imgHeight-max/$_d-viewportWidth-max;
+  $_d-width: $_d-widthVW;
+  $_d-height: $_d-heightVW;
+  $_mq-max: $_d-viewportWidth-max/$_d-baseFontSize;
+  $_mq-min: $_d-viewportWidth-min/$_d-baseFontSize;
+
+  display: block;
+  width: $_d-widthVW * 100vw;
+  min-width: #{ $_d-width * $_mq-min }rem;
+  max-width: #{ $_d-width * $_mq-max }rem;
+  height: $_d-heightVW  * 100vw;
+  min-height: #{ $_d-height * $_mq-min }rem;
+  max-height: #{ $_d-height * $_mq-max }rem;
+}
+
+
+// ================
+// Full-Width Spacing
+
+@mixin fullWidthSpacing($_d-spacingPercent, $_mq-max: 75em, $_x-paddingOrMargin: 'padding') {
+
+////// Description:
+  // - mixin to apply fluid padding or margin to a full-width section that will stop increasing at a desired screen size
+  ////
+
+////// @param $_d-spacingPercent
+  // - the desired amount of padding or margin, relative to the viewport width
+  // - should be a % value (such as 10%)
+  // - REQUIRED parameter
+  ////
+
+////// @param $_mq-max
+  // - the screen size at which the padding or margin should stop increasing
+  // - should be an EM value
+  // - defaults to 75em (1200px)
+  ////
+
+////// @param $_x-paddingOrMargin
+  // - specify whether you are setting padding or margin with the mixin
+  ////
+
+////// Instructions:
+  // - Scale your viewport to a medium screen size (around 768px perhaps) and add the desired amount of padding/margin. Take note of this % value.
+  // - Scale your viewport up until you reach the screen size where you would like the padding/margin to stop increasing. Take note of the screen size.
+  // - Add the mixin to the section, passing in the above values where appropriate.
+  ////
+
+  $_d-spacing: ( $_d-spacingPercent / 1% ) / 100;
+  $_mq-max: $_mq-max / 1em;
+  @if $_x-paddingOrMargin == 'margin' {
+    margin-top: $_d-spacingPercent;
+    margin-bottom: $_d-spacingPercent;
+    @media ( min-width: #{$_mq-max}em ) {
+      margin-top: #{ $_d-spacing * $_mq-max }rem;
+      margin-bottom: #{ $_d-spacing * $_mq-max }rem;
+    }
+  } @else {
+    padding-top: $_d-spacingPercent;
+    padding-bottom: $_d-spacingPercent;
+    @media ( min-width: #{$_mq-max}em ) {
+      padding-top: #{ $_d-spacing * $_mq-max }rem;
+      padding-bottom: #{ $_d-spacing * $_mq-max }rem;
+    }
+  }
+}
+
+// Function to return a max value for a breakpoint (1px less)
+@function maxMQ($_mq-breakpoint) {
+  @return $_mq-breakpoint - 0.0625em;
+}

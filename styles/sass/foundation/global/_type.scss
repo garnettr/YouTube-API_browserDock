@@ -1,0 +1,116 @@
+// ================
+// Typography
+// ================
+
+
+// ================
+// Universal Elements
+
+*,
+*::before,
+*::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+// ================
+// Root
+
+html {
+  line-height: 1.4;
+  font-family: $f-bodyFont;
+}
+
+
+// ================
+// Headlines
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1em 0 1rem 0;
+  line-height: 1.2;
+  font-weight: bold;
+  font-family: $f-headlineFont;
+  color: $c-brandOrange;
+  
+  text-transform: capitalize;
+}
+
+h1,
+h2 {
+  @include fluidTypeSize( 2.125, 1.5);
+}
+
+h3 {
+  @include fluidTypeSize( 1.563, 1.25);
+}
+
+h4 {
+  @include fluidTypeSize( 1.75, 1.25);
+  color: #746d6a;
+}
+
+h5 {
+  // font-size: ;
+}
+
+h6 {
+  // font-size: ;
+}
+
+
+// ================
+// Body Copy
+
+p,
+ul,
+ol,
+blockquote,
+address {
+  margin: 1rem 0;
+  font-style: normal;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 0;
+    list-style-type: none;
+  }
+}
+
+a {
+
+  &:hover,
+  &:focus {
+    // ~ Put hover/focus styles here ~
+  }
+}
+
+%small,
+small {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+
+// ================
+// Other Type Styles
+
+.error,
+.val-header {
+  color: $c-error;
+}
+
+.info {
+  font-weight: bold;
+  font-family: $f-headlineFont;
+  color: #282828;
+}

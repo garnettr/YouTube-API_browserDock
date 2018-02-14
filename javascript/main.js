@@ -96,9 +96,12 @@
     return params;
   }
 
-//===============================================================
 
- // TBD
+
+
+//===================== End of Boiler Plate ================================
+
+  // Grabs Uploads ID and passes it to Recent Playlist Function 
   const executeChnlInfo = request => {
     request.execute(function(response) {
       let data = response;
@@ -106,7 +109,6 @@
       requestChnlPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads);
     });
   }
-
 
   // Grabs a specific channel information
   const buildChnlInfo =(requestMethod, path,params, properties) => {
@@ -141,7 +143,7 @@
       let str = '';
 
       for (let i = 0; i < data.items.length; i ++) {
-        str += `<iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[i].snippet.resourceId.videoId}" frameborder="0" encrypted-media" allowfullscreen></iframe>`;  
+        str += `<div class="video-wrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[i].snippet.resourceId.videoId}" frameborder="0" encrypted-media" allowfullscreen></iframe></div>`;  
         playlistsItem.innerHTML = str;  
       }
     });
@@ -176,7 +178,8 @@
     requestSub.execute(function(requestSub) {
       let data = requestSub;
       console.log(data);
-      let subscriptImages = document.querySelector('.youtube_profiles');
+      let subscriptImages = document.querySelector('.youtube_profiles'); 
+      let profile_info = document.querySelector('.profile_info');
       let content = '';
       let str = '';
 
@@ -191,8 +194,10 @@
         let source = items[i].profileImage;
         let channelId = items[i].channelId;
         str += `<img src="${source}" alt="" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
-        subscriptImages.innerHTML = str + `<button js="js-next-page" id="${data.nextPageToken}" onclick="requestSubscriptions(this.id)">NexPage</button>` + `<button js="js-prev-page">PrevPage</button>`;  
+        subscriptImages.innerHTML = str;  
       }
+      $(".input-group-append").css("display", "none");
+      profile_info.innerHTML = `<p class="info">Please select a channel below</p>`;
       console.log(content);
       console.log(items);
     });
@@ -262,10 +267,12 @@
 
 
 
-// ============== "States" Defining Requests ===============//
+// ============== Defining Requests ===============//
 
 // Gets your channel info > upon "signing in"
 const getChanelInfo = () => {
+  $(".input-group-append").css("display", "flex");
+  $("header span").css("display", "none");
   buildProfile('GET',
               '/youtube/v3/channels', 
               {'mine': 'true',
@@ -332,4 +339,3 @@ const subscrptIcon = document.querySelector('.js-subscriptions');
 // ============== Event Handlers ===============//
 
 grabInfo.addEventListener('click', GrabInfoClicked);
-// profileInner.addEventListener('click', activateImages);

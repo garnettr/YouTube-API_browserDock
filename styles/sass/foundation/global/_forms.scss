@@ -1,0 +1,204 @@
+// ================
+// Form Elements
+// ================
+
+
+// ================
+// Form Fields
+
+// Base Form Field Styles
+%form-field {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid black;
+  background: #fff;
+
+  .type_telephone &,
+  .type_ssn &,
+  .type_date & {
+    width: auto;
+  }
+
+  .error &,
+  .val-flag & {
+    border-color: $c-error;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+// Text-like Inputs
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url] {
+  @extend %form-field !optional;
+  line-height: 1.2;
+}
+
+
+// Textarea
+textarea {
+  @extend %form-field !optional;
+  overflow: auto !important;
+  min-height: 8em;
+  resize: both !important;
+  line-height: 1.4;
+}
+
+
+// Select (dropdown)
+select {
+  @extend %form-field !optional;
+  overflow: hidden;
+  height: 2.5em;
+  line-height: 1.2;
+}
+
+
+// Radio & Checkbox
+input[type=radio],
+input[type=checkbox] {
+  float: left;
+  width: 1em;
+  height: 1em;
+  margin: 0.5em 0 0 0;
+
+  & ~ label,
+  & ~ .rte-q-label {
+    display: block;
+    padding: 0.3125em 0 0.3125em 1.25rem;
+    cursor: pointer;
+    font-size: 0.9444em;
+  }
+}
+
+
+// ================
+// Question Layout
+
+// Basic Question
+.question {
+  margin: 1rem 0;
+
+  // Labels
+  & > label,
+  & > .rte-q-label,
+  & > .desc {
+    display: block;
+    padding: 0 0 0.125em 0;
+    line-height: 1.4;
+
+    .error &,
+    .val-flag & {
+      color: $c-error;
+    }
+  }
+
+  // Help Text
+  .help {
+    @extend %small;
+  }
+
+  // "For Print" Styles
+  // Hides printable textarea content on screens
+  @media screen {
+
+    .forprint {
+      display: none !important;
+    }
+  }
+}
+
+
+// Wide Form Layout
+// These styles apply only when the "wide form" layout is in use
+%wide-form,
+.wide-form {
+  @include wideFormFlex() {
+
+    .question {
+      margin: 0;
+      padding: 1rem 0;
+      border-top: 1px solid lightgray;
+    }
+
+    .rte-q:first-of-type {
+
+      .question {
+        padding-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+}
+
+
+// Checkbox & Radio Questions
+.type_multicheck,
+.type_radio,
+.type_ethnicity {
+
+  .choice {
+
+    span {
+      display: inline-block;
+      margin-right: 1em;
+      vertical-align: baseline;
+    }
+
+    input {
+
+      &[type=radio],
+      &[type=checkbox] {
+
+        & > label,
+        & > .rte-q-label {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  // Stacked Answer Choices
+  &.answer-stacked .choice {
+
+    span {
+      display: block;
+    }
+  }
+}
+
+
+// Selects
+// Fixes a Firefox bug that clips custom fonts
+.type_date,
+.type_select {
+  span {
+    display: flex;
+  }
+}
+
+
+// ================
+// Login & PW Lookup Forms
+
+// Login Form
+.type_event_login {
+
+  // Containing Block for the UN & PW Fields
+  .un_pw {
+    // ~ Put styles here ~
+  }
+}
+
+
+// PW Lookup Form
+.type_pw_lookup {
+  // ~ Put styles here ~
+}

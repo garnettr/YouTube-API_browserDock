@@ -748,7 +748,7 @@ h6 {
   margin: 1em 0 1rem 0;
   line-height: 1.2;
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   color: #ff6e3f;
   text-transform: capitalize;
 }
@@ -847,7 +847,7 @@ small {
 /* line 112, ../sass/foundation/global/_type.scss */
 .info {
   font-weight: bold;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   color: #282828;
 }
 

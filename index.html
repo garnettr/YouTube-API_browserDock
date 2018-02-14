@@ -1,139 +1,45 @@
-<!DOCTYPE html>
-<!--[if lt IE 10]><html class="no-js lt-ie10"><![endif]-->
-<!--[if gte IE 10]><!--><html lang="en" class="no-js"><!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>resume build</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-	<link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://use.typekit.net/zao6aqo.css">
-  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<html><head>
+  <title>Google APIs - Sample JS Page</title>
+   <link rel="stylesheet" href="https://use.typekit.net/zao6aqo.css">
+    <link rel='stylesheet' href='styles/css/reset.css'>
+    <link rel='stylesheet' href='styles/css/style.css'>
 </head>
 <body>
+<header>
+	<span> You must "authorize" and sign in to access your YouTube info</span>
+	<h4> Welcome to Browser Dock V1.</h4>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+</header>
+<div class="content_wrapper">
 
-  <div class="header_wrapper">
-    <header class="site-header" role="banner">
-      <h1 class="logo"><span>ian ross </span>garnett</h1>
-    </header> <!-- end siter_header -->
-    <span class="header_copy">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
-    </span>
-  </div>
+	<div class="my_profile_img">
+		<span>Please Log in to get started</span>
+		<button id="execute-request-button">Authorize</button>
+	</div>
+	<button id="authorize-button" style="display: none;">Log-In</button>
 
-  <div class="page_wrapper">
-  <section class="skills_section">
-    <div class="skils_header_wrapper">
-      <h4 class="title">Skills</h4>
-    </div>
-    <ul id="skill_wrapper">
-      <li class="skill_item">
-        <span>ui/ux</span>
-      </li>
-      <li class="skill_item">
-        <span>html5/css3</span>
-      </li>
-      <li class="skill_item">
-        <span>WP</span>
-      </li>
-      <li class="skill_item">
-        <span>js/jQuery</span>
-      </li>
-      <li class="skill_item">
-        <span>Web Design</span>
-      </li>
-      <li class="skill_item">
-        <span>Creative Suites</span>
-      </li>
-    </ul>
-  </section> <!-- end Skills Section -->
+	<div class="profile_info"></div>
 
-  <section class="employment_section">
-    <div class="employment_header_wrapper">
-      <h4 class="title">Employment</h4>
-    </div>
-    <div class="content_wrapper jb-info">
-      <div class="company_wrapper">
-        <span class="company_logo eab_logo">EAB</span>
-        <span class="company_logo convert_logo">ATA Digital</span>
-      </div>
-      <div class="job_content_wrapper">
+	<div class="youtube_profiles"></div>
 
-      <!-- Job 1 Starts here -->   
-       <div class="job_info_1">
-          <span class="job_title">Web Designer</span>
-          <span class="to_fromTo">Present</span>
-          <span class="description"><p>Hand coding micro-sites, landing pages and email campaigns using HTML5, CSS3, Sass and the latest user experience and accessibility techniques.</p>
-           <ul>
-            <li>Tasks include:</li>
-            <li>Using a content management system to construct pages</li>
-            <li>Working along side a team of art directors, project managers, copywriters to ensure all web pages are on target and on brand</li>
-            <li>Assisting with version control and with pushing code through
-                staging environments</li>
-            </ul>
-          </span>
-       </div>
-      </div>
+	<div class="js-videos-container"></div>
 
-      <!-- Job 2 Starts here --> 
-      <div class="job_info_1">
-          <span class="job_title">Lead Designer</span>
-          <span class="to_fromTo">jun 2012, Jun 2015</span>
-          <span class="description"><p>Work alongside a team of web developers, account executives, and copywriters in a fast-paced environment to plan an execute national digital marketing campaigns that help raise millions of dollars for nonprofits. Design tasks include campaign branding, laying out and mocking up websites, donation landing pages, and creating graphics for emails. The team also designed and built full-scale responsive websites and web apps from the ground up. Assist with the information architecture, user experience, and design for these websites through sitemapping, wireframing, and mocking up designs in Photoshop. Lead the design team and provided project management as needed.</p>
-          </span>
-       </div>
-      </div>
-    </div>
-  </section> <!-- end employment section -->
+	<div class="input-group-append">
+	  <button class="btn btn-primary js-grab-info" type="button">Grab Your Channels</button>
+	</div>
 
-  <section class="education_section">
-    <div class="education header_header_wrapper">
-      <h4 class="title">Education</h4>
-    </div>
-    <ul class="education_cells_wrapper">
-      <li class="edu_item">
-        <span>ai</span>
-      </li>
-      <li class="edu_item">
-        <span>nova</span>
-      </li>
-      <li class="edu_item">
-        <span>GA</span>
-      </li>
-    </ul>
-  </section> <!-- end education section -->
+</div> 
 
-  <section class="cta_section">
-    <div class="cta_header_wrapper">
-      <h4 class="title">cta section</h4>
-    </div>
-    <div class="content_wrapper jb-info">
-      <p class="discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <button>contact</button>
-      <button>download resume</button>
-    </div>
-  </section> <!-- cta section -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<footer><p>Broswer Dock V2 will allow you to view YouTube and Twitter in one window. But for now enjoy your favorite YouTube subsciptions.<span>Copyright 2018, created by: Ian Ross Ganett @designpxls</span></p></footer> 
+<script src='javascript/main.js'></script>
+</body></html>
 
 
-  <section class="tree_section">
-    <div class="tree_wrapper">
-     tree wrapper
-    </div>
-  </section> <!-- end employment section -->
 
-  </div>
-
-
-</body>
-</html>

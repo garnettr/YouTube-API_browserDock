@@ -96,27 +96,22 @@
     return params;
   }
 
-//===============================================================
 
-  // Renders the parameters passed in from "buildChnlSections"
-  const executeChnlSections = request => {
+
+
+//===================== End of Boiler Plate ================================
+
+  // Grabs Uploads ID and passes it to Recent Playlist Function 
+  const executeChnlInfo = request => {
     request.execute(function(response) {
-      let profile = response;
-      console.log(profile);
-
-      let profileImage = document.querySelector('.js-subscriptions');
-
-      let str = '';
-
-      for (let i = 0; i < profile.items.length; i ++) {
-        str += `<iframe width="420" height="315" src="https://www.youtube.com/embed/videoseries?list=${profile.items[i].contentDetails.playlists}"></iframe>`;  
-        profileImage.innerHTML = str;  
-      }
+      let data = response;
+      console.log(data.items[0].contentDetails.relatedPlaylists.uploads);
+      requestChnlPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads);
     });
   }
 
-  // Passing in the parameters to "executeChnlSections" to render Channel Sections
-  const buildChnlSections =(requestMethod, path,params, properties) => {
+  // Grabs a specific channel information
+  const buildChnlInfo =(requestMethod, path,params, properties) => {
     params = removeEmptyParams(params);
     let request;
     if (properties) {
@@ -134,7 +129,46 @@
           'params': params
       });
     }
-    executeChnlSections(request);
+    executeChnlInfo(request);
+  }
+
+  // Renders the parameters passed in from "buildChnlSections"
+  const executeChnlPlaylist = request => {
+    request.execute(function(response) {
+      let data = response;
+      console.log(data);
+
+      let playlistsItem = document.querySelector('.js-videos-container');
+
+      let str = '';
+
+      for (let i = 0; i < data.items.length; i ++) {
+        str += `<div class="video-wrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[i].snippet.resourceId.videoId}" frameborder="0" encrypted-media" allowfullscreen></iframe></div>`;  
+        playlistsItem.innerHTML = str;  
+      }
+    });
+  }
+
+  // Passing in the parameters to "executeChnlSections" to render Channel Sections
+  const buildChnlPlaylist =(requestMethod, path,params, properties) => {
+    params = removeEmptyParams(params);
+    let request;
+    if (properties) {
+      let resource = createResource(properties);
+      request = gapi.client.request({
+          'body': resource,
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    } else {
+      request = gapi.client.request({
+          'method': requestMethod,
+          'path': path,
+          'params': params
+      });
+    }
+    executeChnlPlaylist(request);
   }
 
   let items = [];
@@ -144,7 +178,8 @@
     requestSub.execute(function(requestSub) {
       let data = requestSub;
       console.log(data);
-      let subscriptImages = document.querySelector('.youtube_profiles');
+      let subscriptImages = document.querySelector('.youtube_profiles'); 
+      let profile_info = document.querySelector('.profile_info');
       let content = '';
       let str = '';
 
@@ -158,9 +193,11 @@
         items.push(content);
         let source = items[i].profileImage;
         let channelId = items[i].channelId;
-        str += `<img src="${source}" alt="" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`;  
+        str += `<img src="${source}" alt="" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
+        subscriptImages.innerHTML = str;  
       }
-      subscriptImages.innerHTML = str + `<button js="js-next-page" id="${data.nextPageToken}" onclick="requestSubscriptions(this.id)">NexPage</button>` + `<button js="js-prev-page">PrevPage</button>`; 
+      $(".input-group-append").css("display", "none");
+      profile_info.innerHTML = `<p class="info">Please select a channel below</p>`;
       console.log(content);
       console.log(items);
     });
@@ -230,10 +267,12 @@
 
 
 
-// ============== "States" Defining Requests ===============//
+// ============== Defining Requests ===============//
 
 // Gets your channel info > upon "signing in"
 const getChanelInfo = () => {
+  $(".input-group-append").css("display", "flex");
+  $("header span").css("display", "none");
   buildProfile('GET',
               '/youtube/v3/channels', 
               {'mine': 'true',
@@ -246,31 +285,26 @@ const requestSubscriptions = (NextPage) => {
     buildSubscriptions('GET',
                     '/youtube/v3/subscriptions',
                     {'mine': 'true',
-                      'maxResults': '2',
+                      'maxResults': '50',
                       'pageToken': NextPage,
                       'part': 'snippet,contentDetails'});
 }
 
 // Gets a list of playlists 
-let requestChnlSections = () => {
-  buildChnlSections('GET',
-                  '/youtube/v3/channelSections',
-                  {'channelId': 'UCpFHkjOa7ia6bH5_6cDsDXg',
-                    'key': 'AIzaSyAv9vVPmmlVolP1M6mcfJc_fcWdlYHywac',
-                    'brandingSettings.channel.showBrowseView': true,
-                   'part': 'contentDetails',
-                   'snippet.type': 'recentUploads'});
+let requestChnlPlaylist= (channelId) => {
+ buildChnlPlaylist('GET',
+                '/youtube/v3/playlistItems',
+                {'maxResults': '25',
+                 'part': 'snippet,contentDetails',
+                 'playlistId': channelId});
 }
 
-// On click oc subsciption images
+// On click of subsciption images gets Uploads Id
 let activateImages = (clicked_id) => {
-    buildChnlSections('GET',
-                  '/youtube/v3/channelSections',
-                  {'channelId': clicked_id,
-                    'key': 'AIzaSyAv9vVPmmlVolP1M6mcfJc_fcWdlYHywac',
-                    'brandingSettings.channel.showBrowseView': true,
-                   'part': 'contentDetails',
-                   'snippet.type': 'recentUploads'});
+  buildChnlInfo('GET',
+                '/youtube/v3/channels',
+                {'id': clicked_id,
+                 'part': 'snippet,contentDetails,statistics'});
 }
 
 // On click grab next page token
@@ -278,7 +312,7 @@ let nextPage = (NextPage) => {
     buildSubscriptions('GET',
                     '/youtube/v3/subscriptions',
                     {'mine': 'true',
-                      'maxResults': '2',
+                      'maxResults': '4',
                       'pageToken': NextPage,
                       'part': 'snippet,contentDetails'});
 }
@@ -305,4 +339,3 @@ const subscrptIcon = document.querySelector('.js-subscriptions');
 // ============== Event Handlers ===============//
 
 grabInfo.addEventListener('click', GrabInfoClicked);
-// profileInner.addEventListener('click', activateImages);

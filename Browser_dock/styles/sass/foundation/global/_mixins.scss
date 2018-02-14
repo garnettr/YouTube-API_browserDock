@@ -1,0 +1,31 @@
+// ================
+// Custom Mixins
+// ================
+
+
+// ~ Put your custom mixins here ~
+
+@include stickyFooter(".content_wrapper", $_x-ieFix: 'true');
+
+$brand-logo: url('../img/logo_text.svg') no-repeat center center;
+$garnett-helmet-reversed: url('black_logo.svg') no-repeat center center;
+
+
+// page-wraper
+@mixin page-wrapper($max-section-width) {
+  padding: 1em;
+  max-width: $max-section-width;
+  margin: auto;
+  @media (min-width: $mq-mediumSmall) { 
+    width: 90%;
+  }
+}
+
+// logo drop-in
+@mixin logo {
+    text-indent: -999rem;
+    margin: 0;
+    @include fluidTypeSize( 2.5, 2);
+    background: $brand-logo;
+    background-size: contain;
+}

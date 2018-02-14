@@ -1,0 +1,179 @@
+// ================
+// Other Info Form
+// ================
+
+
+// ================
+// On/Off Toggle
+
+// Note: If you don't need Other Info styles, set this to 'false'
+$x-otherInfo: 'false'; // 'true' or 'false'
+
+
+// ================
+// Content Formatting
+
+@if $x-otherInfo == 'true' {
+
+  // Note: Make sure to apply the class "group_edit_fields" to your Other Info group
+  .group_edit_fields {
+
+    .question {
+      margin: 1.125em 0;
+    }
+
+    // Edit Mode
+    .group_mode_edit & {
+    }
+
+    // View Mode
+    .group_mode_view & {
+      position: relative;
+      padding-right: 4.25em;
+
+      // Sets all containing .rte-q divs to inline
+      .rte-q {
+        display: inline;
+      }
+
+      // Hides all empty answer spans
+      .no_answer {
+        display: none;
+      }
+
+      // Removes unnecessary fields
+      [class*="field_pname"],
+      [class*="field_major_pc1"],
+      [class*="field_major_pc2"] {
+        display: none;
+      }
+
+      // Name (inline with hidden labels)
+      [class*="field_fname"],
+      [class*="field_mname"],
+      [class*="field_lname"] {
+        display: inline;
+
+        label {
+          display: none;
+        }
+      }
+
+      // Address
+      [class*="field_addr1"],
+      [class*="field_addr2"],
+      [class*="field_city"],
+      [class*="field_state"],
+      [class*="field_zip5_dash_zip4"],
+      [class*="field_country_cd"] {
+
+        label {
+          display: none;
+        }
+      }
+
+      [class*="field_addr1"] {
+        margin-bottom: 0;
+      }
+
+      [class*="field_addr2"],
+      [class*="field_city"],
+      [class*="field_state"],
+      [class*="field_zip5_dash_zip4"] {
+        margin: 0;
+      }
+
+      [class*="field_country_cd"] {
+        margin-top: 0;
+      }
+
+      [class*="field_city"],
+      [class*="field_state"],
+      [class*="field_zip5_dash_zip4"] {
+        display: inline;
+      }
+
+      [class*="field_city"] {
+
+        span::after {
+          content: ", ";
+        }
+      }
+
+      // Phone Number
+      [name^="phone"][name$="area"] {
+
+        & + span {
+
+          &::before {
+            content: "(";
+          }
+
+          &::after {
+            content: ")";
+          }
+
+          &.no_answer {
+            display: block;
+
+            &::before {
+              content: "None provided";
+            }
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
+
+      [name^="phone"][name$="prefix"] {
+
+        & + span {
+
+          &::after {
+            content: " -";
+          }
+        }
+      }
+
+      // Checkbox
+      .type_checkbox {
+
+        label {
+          pointer-events: none;
+        }
+
+        .groupedit_display {
+          display: block;
+          float: left;
+          width: 1em;
+          height: 1em;
+          margin: 0.3125em 0 0 0;
+          text-align: center;
+          color: #666;
+          border: 1px solid #aaa;
+          line-height: 1;
+
+          &.groupedit_display_checked {
+
+            &::before {
+              content: "\2713";
+            }
+          }
+        }
+      }
+
+      // Edit Button
+      .edit_save {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        button {
+          // ~ Put styles here ~
+        }
+      }
+    }
+  }
+}

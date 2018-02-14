@@ -1,0 +1,78 @@
+@import "foundation/index";
+
+
+
+
+.my_profile_img {
+	@include flexbox;
+	@include flex-direction(column);
+	@include align-items(center);
+	padding: 1em;
+	span {
+		color: #a2a2a2;
+		padding-top: .5em;
+		@include fluidTypeSize( .95, .75);
+	}
+
+	img {
+		display: block;
+		margin: auto;
+		max-width: 30em;
+		max-height: 9em;
+		width: auto;
+		height: auto;
+		border-radius: 13em;
+	}
+	button {
+		margin-top: 1em;
+	}
+}
+
+.youtube_profiles {
+	display: flex;
+	overflow: scroll;
+	::-webkit-scrollbar {
+		display: none;
+	}
+	img {
+		border-style: none;
+		width: auto;
+		height: auto;
+		max-height: 10em;
+	}
+}
+
+.js-videos-container {
+	display: flex;
+	overflow: scroll;
+	.video-wrapper {
+    flex-shrink: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 56%;
+  
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+}
+
+.input-group-append {
+	display: none;
+	margin: 2em auto;
+	width: 95%;
+	button {
+		margin: auto;
+	}
+}
+
+.profile_info p {
+	text-align: center;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}

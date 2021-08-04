@@ -40,12 +40,19 @@ This app eliminates having a scrunched screen when having one monitor and having
 
 The app allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 
+
+<h4 align="center">Side by side windows example - with - standard YoutTube App</h4>
+
+![browser-dock-sidebyside-2](https://user-images.githubusercontent.com/28959285/128177159-13acdc15-b90b-46e5-b748-f99f67a15b3c.png)
+
+
+
+<h4 align="center">Side by side windows example - with - BrowserDock</h4>
+
+![browser-dock-sidebyside-1](https://user-images.githubusercontent.com/28959285/128177176-99ac3ae4-32a4-418d-9b3d-ce6d53468d97.png)
+
 You are able to scroll horizontally through not only your subscriptions but your videos loaded. 
 This makes for easy browsing when multi-tasking. 
 
-
-<img align="center" width="636" alt="Browserdock-responsive" src="https://user-images.githubusercontent.com/28959285/128120827-5591dd70-c54c-4264-934f-f2c7546c16f6.png">
-
-<img width="876" alt="Browserdock-large" src="https://user-images.githubusercontent.com/28959285/128120895-4a5f88e9-6667-463e-8613-93d087e67bbd.png">
 
 

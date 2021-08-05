@@ -31,7 +31,6 @@ To test the waters with API's and how to use them, so I picked my favorite site 
 Using the YouTube API as my finial project gave me an incredible amount of motivation.
 This made all the nights of working and hurdles easier when you are in love with the App already.
 
-What better way to practice using Vanilla JS than with your favorite apps API. 
 
 
 ## What problem does it solve?

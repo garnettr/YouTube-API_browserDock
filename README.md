@@ -39,6 +39,7 @@ This app eliminates having a scrunched screen when having one monitor and having
 
 The app allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 
+---
 
 <h3 align="center">Side by side windows example - with - standard YoutTube App</h4>
 

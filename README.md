@@ -28,12 +28,11 @@ I had so much fun coding this and showing it to all of my peers in the boot camp
 ## Why I built this project?
 To test the waters with API's and how to use them, so I picked my favorite site of all to practice with.
 
-Using the YouTube API as my finial project gave me an incredible amount of motivation, since this 
-is one of my favorite apps to use. So creating a app, that in my opinion helps the viewing experience 
-
-This was a great project to practice using API's and a final project for a JS boot-camp.
-What better way to practice using Vanilla JS than with your favorite apps API. 
+Using the YouTube API as my finial project gave me an incredible amount of motivation.
 This made all the nights of working and hurdles easier when you are in love with the App already.
+
+What better way to practice using Vanilla JS than with your favorite apps API. 
+
 
 ## What problem does it solve?
 This app eliminates having a scrunched screen when having one monitor and having 2 windows open.

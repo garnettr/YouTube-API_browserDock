@@ -45,6 +45,8 @@ The app allows for a full screen uninterrupted viewing, meaning no black constra
 
 ![browser-dock-sidebyside-2](https://user-images.githubusercontent.com/28959285/128177159-13acdc15-b90b-46e5-b748-f99f67a15b3c.png)
 
+---
+
 
 
 <h3 align="center">Side by side windows example - with - BrowserDock</h4>

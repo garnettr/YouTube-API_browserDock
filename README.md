@@ -34,6 +34,7 @@ This made all the nights of working and hurdles easier when you are in love with
 
 
 ## What problem does it solve?
+
 This app eliminates having a scrunched screen when having one monitor and having 2 windows open.
 
 The app allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 

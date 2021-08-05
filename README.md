@@ -22,7 +22,7 @@ How great was it to practice everything learned in my course all in one project!
 You can tell how good the course was by the level of the project, not bad huh.
  
 
-I had so much fun coding this and showing it all to my peers in the boot camp.
+I had so much fun coding this and showing it to all of my peers in the boot camp.
 
 
 ## Why I built this project?

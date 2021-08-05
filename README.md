@@ -29,7 +29,7 @@ I had so much fun coding this and showing it to all of my peers in the boot camp
 To test the waters with API's and how to use them, so I picked my favorite site of all to practice with.
 
 Using the YouTube API as my finial project gave me an incredible amount of motivation.
-This made all the nights of working and hurdles easier when you are in love with the App already.
+This made all the nights of working and hurdles easier when you are in love with the API already.
 
 
 

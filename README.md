@@ -26,7 +26,7 @@ I had so much fun coding this and showing it to all of my peers in the boot camp
 
 
 ## Why I built this project?
-To test the waters with API's and how to use them and I picked my favorite sites of all to practice with
+To test the waters with API's and how to use them, so I picked my favorite site of all to practice with.
 
 Using YouTube API as my finial project gave me an incredible amount of motivation, since this 
 is one of my favorite apps to use. So creating a app, that in my opinion helps the viewing experience 

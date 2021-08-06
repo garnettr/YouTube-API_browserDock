@@ -8,7 +8,7 @@
 
 
 > This was a great final project to end my first ever JS boot-camp.
-I'm writing this README.md years after finishing the project and great looking back at
+I'm writing this README.md years after finishing the project and it's great looking back at
 how far I've came and what I've accomplished. 
 
 

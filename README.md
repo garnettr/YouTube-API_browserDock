@@ -38,6 +38,10 @@ This app provides the user with more screen relastate when using one monitor and
 
 It also allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 
+* Provides you with a list of your subscribed channels in full, where you can easily scroll to view them all at once 
+* After you have selected your desired channel, a list of the channels videos are populated that you can horizontally scroll through
+* Making it easy to watch one video after another with out having to click out of the window
+
 ---
 
 <h3 align="center">Side by side windows example - with - standard YoutTube App</h4>

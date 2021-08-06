@@ -7,29 +7,28 @@
 > Psssst this is in the que to get rebuilt in react 
 
 
-I must admit this is a old project but it's still worthy of a proper .MD
+> This was a great final project to end my first ever JS boot-camp.
+I'm writing this README.md years after finishing the project and great looking back at
+how far I've came and what I've accomplished. 
 
 
 ## My motivation?
 
-Practice makes perfect! 
-This was a great final project to end my first ever JS boot-camp.
-I'm writing this README.md years after finishing the project but it's great looking back at
-how far I've came and what I've accomplished. 
+To practice, practice, practice! 
 
+My goal was to learn how to use client side API's and how to work with JSON data.
+I knew once I was able to access the data that the sky was the limit with what I could build. 
 
-How great was it to practice everything learned in my course all in one project! 
-You can tell how good the course was by the level of the project, not bad huh.
- 
-
-I had so much fun coding this and showing it to all of my peers in the boot camp.
+developer.google.com provides great documentation on how to get started with YouTubes API.
+This was a great starting place for everything I needed to get started and through roadblocks.
 
 
 ## Why I built this project?
-To test the waters with API's and how to use them, so I picked my favorite site of all to practice with.
 
-Using the YouTube API as my finial project gave me an incredible amount of motivation.
-This made all the nights of working and hurdles easier when you are in love with the API already.
+I wanted to build a great app, that I could use everday. Something that would keep me coming back to it.
+Not just a app to test out a new coding pattern and then it's discarded. 
+
+But rather and app that was built around something I already had an interest in. 
 
 
 
@@ -37,7 +36,7 @@ This made all the nights of working and hurdles easier when you are in love with
 
 This app eliminates having a scrunched screen when using one monitor and having 2 windows open.
 
-The app allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
+It also allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 
 ---
 

@@ -57,3 +57,14 @@ This makes for easy browsing when multi-tasking.
 
 
 
+## How it works 
+
+  In order for the app to access a users subscribed channels, google has a series of steps to authourize the app. 
+
+* It creates the redirect URL for Google's authorization server and provides a method to direct the user to that URL.
+* It handles the redirect from that server back to your application.
+* It validates the access token returned by the authorization server.
+* It stores the access token that the authorization server sends to your application and retrieves it when your app subsequently makes authorized API calls.
+
+
+

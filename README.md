@@ -25,16 +25,16 @@ This was a great starting place for everything I needed to get started and throu
 
 ## Why I built this project?
 
-I wanted to build a great app, that I could use everday. Something that would keep me coming back to it.
+I wanted to build an app that I could use everday. Something that could be of good use, and would keep me interested. 
 Not just a app to test out a new coding pattern and then it's discarded. 
 
-But rather and app that was built around something I already had an interest in. 
+But rather an app that was built around something I was already interested in. 
 
 
 
 ## What problem does it solve?
 
-This app eliminates having a scrunched screen when using one monitor and having 2 windows open.
+This app provides the user with more screen relastate when using one monitor and having 2 windows open with one being YouTube.
 
 It also allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left of right side or added UI elements below. A 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 

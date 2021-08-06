@@ -17,7 +17,7 @@ how far I've came and what I've accomplished.
 To practice, practice, practice! 
 
 My goal was to learn how to use client side API's and how to work with JSON data.
-I knew once I was able to access the data that the sky was the limit with what I could build. 
+I knew once I was able to access the data, the sky was the limit with what I could build. 
 
 developer.google.com provides great documentation on how to get started with YouTubes API.
 This was a great starting place for everything I needed to get started and through roadblocks.

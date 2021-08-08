@@ -63,7 +63,7 @@ This makes for easy browsing when multi-tasking.
 
 ## How it works 
 
-  In order for the app to access a users subscribed channels, google has a series of steps to authourize the app. 
+  In order for the app to access a users subscribed channels, google has a series of steps to authorize the app. 
 
 * It creates the redirect URL for Google's authorization server and provides a method to direct the user to that URL.
 * It handles the redirect from that server back to your application.
@@ -87,6 +87,10 @@ function initClient() {
   });
 }
 ```
+
+#### After the app is authorized and data is loaded
+
+An example of the JSON and what can be accessed after the data is loaded. 
 
 
 

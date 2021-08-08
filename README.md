@@ -97,7 +97,7 @@ An example of the JSON and what can be accessed after the data is loaded.
 > Returned object of YouTube channel and there basic info
 <img width="922" alt="Youtube-channel-info" src="https://user-images.githubusercontent.com/28959285/128637167-ca76e654-d2c8-4f0d-bfc4-9f3df7bcfe0e.png">
 
-> That sme channels, and the returned object of channels **Vidoes**
+> That same channel and the returned object of info and **Vidoes**
 
 <img width="965" alt="Youtube-channel-videos" src="https://user-images.githubusercontent.com/28959285/128637170-ffbf509e-9657-4838-a345-eada84412d15.png">
 

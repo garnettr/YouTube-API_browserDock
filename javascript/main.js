@@ -105,7 +105,7 @@
   const executeChnlInfo = request => {
     request.execute(function(response) {
       let data = response;
-      console.log("data" + data);
+//       console.log(data);
       requestChnlPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads);
     });
   }
@@ -136,7 +136,7 @@
   const executeChnlPlaylist = request => {
     request.execute(function(response) {
       let data = response;
-      console.log(data);
+//       console.log(data);
 
       let playlistsItem = document.querySelector('.js-videos-container');
 
@@ -177,7 +177,7 @@
   const executeSubscriptions = requestSub => {
     requestSub.execute(function(requestSub) {
       let data = requestSub;
-      console.log(data);
+//       console.log(data);
       let subscriptImages = document.querySelector('.youtube_profiles'); 
       let profile_info = document.querySelector('.profile_info');
       let content = '';
@@ -198,8 +198,8 @@
       }
       $(".input-group-append").css("display", "none");
       profile_info.innerHTML = `<p class="info">Please select a channel below</p>`;
-      console.log(content);
-      console.log(items);
+//       console.log(content);
+//       console.log(items);
     });
   }
 
@@ -237,7 +237,7 @@
         str += `<img src="${data.items[i].snippet.thumbnails.high.url}" alt="" height="20%" width="40%">`;  
         yourProfile.innerHTML = str; 
       }
-      console.log(str);
+//       console.log(str);
     });
   }
 

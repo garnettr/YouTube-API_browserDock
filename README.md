@@ -56,7 +56,7 @@ It also allows for a full screen uninterrupted viewing, meaning no black constra
 
 ![browser-dock-sidebyside-1](https://user-images.githubusercontent.com/28959285/128177176-99ac3ae4-32a4-418d-9b3d-ce6d53468d97.png)
 
-> You are able to scroll horizontally through not only your subscriptions but your videos loaded. 
+> You are able to scroll horizontally through not only your subscriptions but your loaded videos. 
 This makes for easy browsing when multi-tasking. 
 
 

@@ -105,7 +105,7 @@
   const executeChnlInfo = request => {
     request.execute(function(response) {
       let data = response;
-      console.log(data.items[0].contentDetails.relatedPlaylists.uploads);
+      console.log(data);
       requestChnlPlaylist(data.items[0].contentDetails.relatedPlaylists.uploads);
     });
   }

@@ -94,7 +94,7 @@ function initClient() {
 An example of the JSON and what can be accessed after the data is loaded. 
 
 
-> Returned object of YouTube channel and there basic info
+> Returned object of YouTube channel
 <img width="922" alt="Youtube-channel-info" src="https://user-images.githubusercontent.com/28959285/128637167-ca76e654-d2c8-4f0d-bfc4-9f3df7bcfe0e.png">
 
 > That same channel and the returned object of info and **Vidoes**

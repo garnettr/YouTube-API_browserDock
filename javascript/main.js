@@ -234,7 +234,7 @@
       let str = '';
 
       for (let i = 0; i < data.items.length; i ++) {
-        str += `<img src="${data.items[i].snippet.thumbnails.high.url}" alt="Users Profile Image" height="20%" width="40%">`;  
+        str += `<img src="${data.items[i].snippet.thumbnails.medium.url}" alt="Users Profile Image" height="20%" width="40%">`;  
         yourProfile.innerHTML = str; 
       }
 //       console.log(str);

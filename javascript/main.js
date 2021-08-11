@@ -187,13 +187,15 @@
       for (let i = 0; i < data.items.length; i ++) {
         content = {
           'profileImage': data.items[i].snippet.thumbnails.medium.url,
-          'channelId': data.items[i].snippet.resourceId.channelId
+          'channelId': data.items[i].snippet.resourceId.channelId,
+          'title': data.items[i].snippet.title
         }
         // push "profileImage" and "channelId" to "items" and render suscription images to page
         items.push(content);
         let source = items[i].profileImage;
         let channelId = items[i].channelId;
-        str += `<img loading="lazy" src="${source}" alt="" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
+        let altTitle = items[i].title;
+        str += `<img loading="lazy" src="${source}" alt="{altTitle}" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
         subscriptImages.innerHTML = str;  
       }
       $(".input-group-append").css("display", "none");

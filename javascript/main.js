@@ -186,7 +186,7 @@
         // Loop through and save "profileImage" and "channelId"
       for (let i = 0; i < data.items.length; i ++) {
         content = {
-          'profileImage': data.items[i].snippet.thumbnails.default.url,
+          'profileImage': data.items[i].snippet.thumbnails.medium.url,
           'channelId': data.items[i].snippet.resourceId.channelId
         }
         // push "profileImage" and "channelId" to "items" and render suscription images to page

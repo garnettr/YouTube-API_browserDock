@@ -195,7 +195,7 @@
         let source = items[i].profileImage;
         let channelId = items[i].channelId;
         let altTitle = items[i].title;
-        str += `<img loading="lazy" src="${source}" alt="{altTitle}" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
+        str += `<img loading="lazy" src="${source}" alt="${altTitle}" height="20%" width="40%" class="js-subscriptions-image" id="${channelId}" onclick="activateImages(this.id)">`; 
         subscriptImages.innerHTML = str;  
       }
       $(".input-group-append").css("display", "none");

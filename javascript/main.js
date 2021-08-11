@@ -136,7 +136,7 @@
   const executeChnlPlaylist = request => {
     request.execute(function(response) {
       let data = response;
-//       console.log(data);
+      console.log(data);
 
       let playlistsItem = document.querySelector('.js-videos-container');
 

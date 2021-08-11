@@ -143,7 +143,7 @@
       let str = '';
 
       for (let i = 0; i < data.items.length; i ++) {
-        str += `<div class="video-wrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[i].snippet.thumbnails.high}" frameborder="0" encrypted-media" allowfullscreen></iframe></div>`;  
+        str += `<div class="video-wrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/${data.items[i].snippet.resourceId.videoId}" frameborder="0" encrypted-media" allowfullscreen></iframe></div>`;  
         playlistsItem.innerHTML = str;  
       }
     });

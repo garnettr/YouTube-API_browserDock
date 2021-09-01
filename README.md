@@ -19,13 +19,13 @@ To practice, practice, practice!
 My goal was to learn client side API's and how to work with JSON data.
 I knew once I was able to access the data, the sky was the limit with what I could build. 
 
-developer.google.com provides great documentation on how to get started with YouTubes API.
+Developer.google.com provides great documentation on how to get started with YouTubes API.
 This was a great starting place for everything I needed to get started and over any hurdles.
 
 
 ## Why I built this project?
 
-I wanted to build an app that I could use everday. Something that could be of good use and would keep me interested. 
+I wanted to build an app that I could use everyday. Something that could be of good use and would keep me interested. 
 Not just an app to test out a new coding pattern and then it's discarded. 
 
 But rather an app that was built around something I was already interested in. 
@@ -34,13 +34,13 @@ But rather an app that was built around something I was already interested in.
 
 ## What problem does it solve?
 
-This app provides the user with more screen relastate when using one monitor and having 2 windows open with one being YouTube.
+This app provides the user with more screen real estate when using one monitor and having 2 windows open with one being YouTube.
 
 It also allows for a full screen uninterrupted viewing, meaning no black constraining bars on the left, right, top or bottom. This makes for a 100% screen to screen viewing experience from mobile to as large as your browser window allows. 
 
 * Provides you with a list of your subscribed channels in full, where you can easily scroll to view them all at once 
 * After you have selected your desired channel, a list of the channels videos are populated that you can horizontally scroll through
-* Making it easy to watch one video after another with out having to click out of the window
+* Making it easy to watch one video after another without having to click out of the window
 
 ---
 
@@ -63,7 +63,7 @@ This makes for easy browsing when multi-tasking.
 
 ## How it works 
 
-  In order for the app to access a users subscribed channels, google has a series of steps to authorize the app. 
+  In order for the app to access a user’s subscribed channels, google has a series of steps to authorize the app. 
 
 * It creates the redirect URL for Google's authorization server and provides a method to direct the user to that URL.
 * It handles the redirect from that server back to your application.

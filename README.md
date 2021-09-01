@@ -25,7 +25,7 @@ This was a great starting place for everything I needed to get started and over 
 
 ## Why I built this project?
 
-I wanted to build an app that I could use everday. Something that could be of good use and wkeep me interested. 
+I wanted to build an app that I could use everday. Something that could be of good use and would keep me interested. 
 Not just an app to test out a new coding pattern and then it's discarded. 
 
 But rather an app that was built around something I was already interested in. 
